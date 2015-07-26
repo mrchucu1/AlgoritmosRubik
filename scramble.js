@@ -204,3 +204,88 @@ function Algoritmo6 () {
     }
     $("#algoritmo").html(algoritmofinal);
 }
+//Algoritmo para pyra
+function Algoritmopyra () {
+    var opciones = {
+        "R" : { "allowed" : true, "enables" : ["U", "B"] },
+        "L" : { "allowed" : true, "enables" : ["U", "B"] },
+        "U" : { "allowed" : true, "enables" : ["R", "L", "B"] },
+        "B" : { "allowed" : true, "enables" : ["R", "L", "U"] }
+    };
+
+    var algoritmofinal;
+
+    var principal = ["R", "L", "U", "B"];
+
+    var provisional = [];
+
+    var tamano = Math.floor(Math.random() * (2)) + 7;//da un tamaño aleatorio de 7 a 9
+
+    var puntas = (Math.floor(Math.random() + 11)) - tamano;//La diferencia de tamano con el tamaño final del scramble
+    
+    for (var i = 0; i <= tamano; i++) {
+        do {
+            rand = Math.floor(Math.random() * (principal.length)); //toma una letra
+
+            var face = principal[rand];
+          
+          } while(! opciones[face]["allowed"])
+
+          opciones[face]["allowed"]= false;
+
+          for (var j = 0; j < opciones[face]["enables"].length; j++) {
+            opciones[opciones[face]["enables"][j]]["allowed"] = true;
+          };
+
+          switch(Math.floor(Math.random() * 2))
+          {
+            case 0: agregado = "";
+            break;
+
+            case 1: agregado = "'";
+            break;
+          }
+
+          provisional[i] = " " + face + agregado;
+          algoritmofinal = provisional.join(" ");//quita las comas del arreglo antes de imprimirlo
+    }
+
+    //Scramble para las puntas
+
+    provisional = [];//limpia el scramble
+
+    /*
+     *  Activa las opciones de nuevo, ya que no se pueden repetir de la siguiente manera 'l b l' 
+     *  entonces cuando las desactiva abajo ya no se pueden usar de nuevo.
+     */
+     
+    for (var l = 0; l < principal.length; l++) {
+        opciones[principal[l]]["allowed"] = true;
+    };
+
+    for (var k = 0; k < puntas; k++) {
+        do {
+            rand = Math.floor(Math.random() * (principal.length)); //toma una letra
+
+            var face = principal[rand];
+          
+          } while(! opciones[face]["allowed"])
+
+          opciones[face]["allowed"]= false;
+
+          switch(Math.floor(Math.random() * 2))
+          {
+            case 0: agregado = "";
+            break;
+
+            case 1: agregado = "'";
+            break;
+
+          }
+
+          provisional[i] = " " + face + agregado;
+          var algoritmofinal2 = " " + provisional.join(" ");//quita las comas del arreglo antes de imprimirlo
+          algoritmofinal += algoritmofinal2.toLowerCase();
+    }
+    $("#algoritmo").html(algoritmofinal);
+}
