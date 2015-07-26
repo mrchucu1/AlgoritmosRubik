@@ -2,15 +2,12 @@
 function Algoritmo2 () {
 
 	var opciones = {
-		"R" : { "allowed" : true, "enables" : ["U", "D", "F", "B"] },
-        "L" : { "allowed" : true, "enables" : ["U", "D", "F", "B"] },
-        "U" : { "allowed" : true, "enables" : ["R", "L", "F", "B"] },
-        "D" : { "allowed" : true, "enables" : ["R", "L", "F", "B"] },
-        "F" : { "allowed" : true, "enables" : ["R", "L", "U", "D"] },
-        "B" : { "allowed" : true, "enables" : ["R", "L", "U", "D"] }
+		"R" : { "allowed" : true, "enables" : ["U", "F"] }, //No se recomienda en 2x2 usar B,D o L
+        "U" : { "allowed" : true, "enables" : ["R", "F"] },
+        "F" : { "allowed" : true, "enables" : ["R", "U"] }
 	};
 
-	var principal = ["R", "L", "U", "D", "F", "B"];
+	var principal = ["R", "U", "F"];
 
 	var provisional = [];
 	
@@ -61,7 +58,7 @@ function Algoritmo3 () {
 
     var provisional = [];
     
-    for (var i = 0; i <= 19; i++) {
+    for (var i = 0; i <= 20; i++) {
         do {
             rand = Math.floor(Math.random() * (principal.length)); //toma una letra
 
@@ -94,13 +91,14 @@ function Algoritmo3 () {
 }
 
 //algoritmo para 4x4 y 5x5
+//no se recomienda para 4x4 usar Lw, Bw o Dw
 function Algoritmo45 () {
 
 	var opciones = {
         "R"  : { "allowed" : true, "enables" : ["U", "Uw", "D", "Dw", "F", "Fw", "B", "Bw"] },
         "Rw" : { "allowed" : true, "enables" : ["U", "Uw", "D", "Dw", "F", "Fw", "B", "Bw"] },
         "L"  : { "allowed" : true, "enables" : ["U", "Uw", "D", "Dw", "F", "Fw", "B", "Bw"] },
-        "Lw" : { "allowed" : true, "enables" : ["U", "Uw", "D", "Dw", "F", "Fw", "B", "Bw"] },
+        "Lw" : { "allowed" : true, "enables" : ["U", "Uw", "D", "Dw", "F", "Fw", "B", "Bw"] }, 
         "U"  : { "allowed" : true, "enables" : ["R", "Rw", "L", "Lw", "F", "Fw", "B", "Bw"] },
         "Uw" : { "allowed" : true, "enables" : ["R", "Rw", "L", "Lw", "F", "Fw", "B", "Bw"] },
         "D"  : { "allowed" : true, "enables" : ["R", "Rw", "L", "Lw", "F", "Fw", "B", "Bw"] },
